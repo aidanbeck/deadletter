@@ -69,7 +69,7 @@ const createGrid = (wrapper,columns,rows,scale) => {
 }
 
 const chunk0 = document.getElementsByClassName("DESKTOP-DIV")[0];
-createGrid(chunk0, 16, 8, 90);
+createGrid(chunk0, 15*5, 15, 90);
 
 function scaleChunks(columns,rows,scale) {
     const elements = document.getElementsByClassName("DESKTOP-DIV");
