@@ -1,0 +1,45 @@
+/* optional aesthetics, feel free to change or remove*/
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    margin: 0px;
+    scrollbar-width: none;
+    background-color: rgb(60, 60, 60);
+}
+
+.DESKTOP-DIV {
+    background-color: rgb(100, 100, 100);
+}
+
+.tile {
+    background-color: rgb(40, 40, 40);
+}
+
+/*hitbox indicator*/
+.icon:hover {
+    background-color:rgba(256,256,256,.125);
+}
+.dragging-over { /*duplicate of icon:hover, but hovers cannot be detected when dragging, so it detects if it's currently dragging over the spot*/
+    background-color:rgba(256,256,256,.125);
+}
+
+/*icon imagery*/
+.icon-image {
+    filter: drop-shadow(-2px 6px 5px rgba(0,0,0,0.8)); /*shadow*/
+}
+.icon:hover .icon-image {
+    background-color:rgba(256,256,256,.2);
+}
+
+/* image scaling & anchoring*/
+
+.examplefile {
+    width: 80%;
+    height: 80%;
+
+    top: 10%;
+    left:10%;
+
+    image-rendering: pixelated;
+}

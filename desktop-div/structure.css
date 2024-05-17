@@ -1,0 +1,26 @@
+.DESKTOP-DIV {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-template-rows: repeat(var(--rows), 1fr);
+
+    user-select: none;
+}
+
+.tile {
+    background-size: 100%;
+    margin:0px;
+    position:relative;
+}
+
+.icon {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.icon-image {
+    position: absolute;
+    pointer-events: none; /*lets hovering mouse pass through*/
+}
