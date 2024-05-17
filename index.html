@@ -10,8 +10,28 @@
     <body>
 
         <div class = "DESKTOP-DIV"></div>
+
         <script src="desktop-div/desktop-div.js"></script>
         <script src="interface.js"></script>
         
+        
+        <script>
+            async function init() {
+                // Load and instantiate the WebAssembly module
+                const response = await fetch('latte.wasm');
+                const buffer = await response.arrayBuffer();
+                const module = await WebAssembly.instantiate(buffer);
+                
+                // Access the exported C function
+                const { _multiplier } = module.instance.exports;
+      
+                // Call the C function from JavaScript
+                const result = _multiplier(2, 3);
+                console.log(result); // Output: 5
+            }
+      
+            init();
+          </script>
+          <script async type="text/javascript" src="latte.js"></script>
     </body>
 </html>

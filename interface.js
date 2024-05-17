@@ -37,6 +37,13 @@ function writeIcon(index, tile) {
     }
 }
 
+//For C to read
+Module = {
+    onRuntimeInitialized: function() {
+      Module.writeIcon = writeIcon;
+    }
+};
+
 /*
     Debug function. This will render all textures to the screen, so you can see what is missing.
 */
