@@ -4,7 +4,6 @@
 const tileElements = document.getElementsByClassName("tile");
 
 function writeIcon(index, tile) {
-
     //get tile
     let icon = tileElements[index].firstChild;
 
@@ -16,6 +15,9 @@ function writeIcon(index, tile) {
     if (tile != 0) {
         
         icon.draggable = true;
+
+        icon.tile = tile; //this DOES store a value, I just can't access it with ev.target? it always turns to 1?
+        //console.log("w" + icon.tile);
 
         //get data
         let data = TILES[tile];
@@ -96,3 +98,5 @@ const TILES = [
 
     {class: "BALL", src:""}
 ]
+
+setInterval(function () { _gameLoop(); }, 500);

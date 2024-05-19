@@ -1,30 +1,32 @@
-function createTile() {
+function createTile(index) {
     const tile = document.createElement("div");
     tile.classList.add("tile");
 
     const icon = document.createElement("div");
     icon.classList.add("icon");
 
+    //icon.index = index; //for when you
+
     icon.addEventListener("dragstart", pickupIcon);
     icon.addEventListener("drop", dropIcon);
     icon.addEventListener("dragover", hoverTileWhileDragging);
     icon.addEventListener("dragleave", exitTileWhileDragging);
 
-    icon.onclick = function() {
+    // icon.onclick = function() {
 
-        icon.style.backgroundColor = "";
+    //     icon.style.backgroundColor = "";
 
-        if (icon.innerHTML == "") {
-            icon.draggable = true;
-            icon.innerHTML = "<img class='icon-image examplefile' src='desktop-div/icon.png'>";
-            icon.firstChild.style.zIndex = getZIndex(icon) * 2; //why *2?
-            icon.firstChild.src = icon.firstChild.src + '?id=' + Math.floor(Math.random() * 100); //animation offset. Could be better way?
+    //     if (icon.innerHTML == "") {
+    //         icon.draggable = true;
+    //         icon.innerHTML = "<img class='icon-image examplefile' src='desktop-div/icon.png'>";
+    //         icon.firstChild.style.zIndex = getZIndex(icon) * 2; //why *2?
+    //         icon.firstChild.src = icon.firstChild.src + '?id=' + Math.floor(Math.random() * 100); //animation offset. Could be better way?
 
-        } else {
-            icon.innerHTML = "";
-            icon.draggable = false;
-        }
-    }
+    //     } else {
+    //         icon.innerHTML = "";
+    //         icon.draggable = false;
+    //     }
+    // }
 
     tile.appendChild(icon);
     
@@ -42,7 +44,7 @@ function createTiles(wrapper, columns, rows) {
 
     for (i = 0; i < rows; i++) {
         for (j=0; j < columns; j++) {
-            let tileElement = createTile();
+            let tileElement = createTile(i+j);
             
             //const zIndex = i*rows + (columns-j);
 
@@ -96,7 +98,6 @@ function exitTileWhileDragging(ev) {
   
 //fired when icon is picked up
 function pickupIcon(ev) {
-
     let data = "draggingid"; //this will eventually be the tile # type and it's location
     ev.dataTransfer.setData("text", data); //I could also store this in my own global variable instead
 
@@ -106,6 +107,7 @@ function pickupIcon(ev) {
 
 //fired when icon is dropped
 function dropIcon(ev) {
+    console.log("test 1");
     var data = ev.dataTransfer.getData("text"); //get data stored in drag (currently always "draggingid")
 
     //finds element with id "draggingid", then clones it
@@ -122,4 +124,11 @@ function dropIcon(ev) {
     draggedIcon.innerHTML = "";
     draggedIcon.draggable = false;
     draggedIcon.removeAttribute('id');
+    
+    const nodes = Array.prototype.slice.call( document.getElementsByClassName("tile") );
+    const oldIndex = nodes.indexOf( draggedIcon.parentNode );
+    const newIndex = nodes.indexOf( ev.target.parentNode );
+
+    _writeFromJS(oldIndex, 0);
+    _writeFromJS(newIndex, draggedIcon.tile);
 }
