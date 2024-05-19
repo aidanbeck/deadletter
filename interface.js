@@ -7,6 +7,10 @@ function writeIcon(index, tile) {
     //get tile
     let icon = tileElements[index].firstChild;
 
+    if (icon.data == tile) {
+        return;
+    }
+
     //remove contents/images if there are any
     while(icon.firstChild){
         icon.removeChild(icon.firstChild);
@@ -29,7 +33,7 @@ function writeIcon(index, tile) {
         if (data.src == "") { data.src = "other/icon.png" };
         image.src = "images/" + data.src;
 
-        if (tile > 4) {
+        if (tile > 4 && tile < 29) {
             image.classList.add("CENTI"); //temp
         }
 
@@ -96,7 +100,7 @@ const TILES = [
     {class: "CENTITAIL_SE", src:"enemies/centiEndNW.png"}, //!!! missing file
     {class: "CENTITAIL_SW", src:"enemies/centiEndNE.png"},
 
-    {class: "BALL", src:""}
+    {class: "BALL", src:"enemies/coyoteWalk.gif"}
 ]
 
 setInterval(function () { _gameLoop(); }, 500);

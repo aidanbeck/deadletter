@@ -920,7 +920,7 @@ function dbg(...args) {
 // === Body ===
 
 var ASM_CONSTS = {
-  66036: ($0, $1) => { Module.writeIcon($0, $1); }
+  66236: ($0, $1) => { Module.writeIcon($0, $1); }
 };
 
 // end include: preamble.js
@@ -1218,9 +1218,9 @@ var wasmImports = {
 };
 var wasmExports = createWasm();
 var ___wasm_call_ctors = createExportWrapper('__wasm_call_ctors', 0);
+var _main = Module['_main'] = createExportWrapper('main', 2);
 var _gameLoop = Module['_gameLoop'] = createExportWrapper('gameLoop', 0);
 var _writeFromJS = Module['_writeFromJS'] = createExportWrapper('writeFromJS', 2);
-var _main = Module['_main'] = createExportWrapper('main', 2);
 var _fflush = createExportWrapper('fflush', 1);
 var _emscripten_stack_init = () => (_emscripten_stack_init = wasmExports['emscripten_stack_init'])();
 var _emscripten_stack_get_free = () => (_emscripten_stack_get_free = wasmExports['emscripten_stack_get_free'])();
