@@ -18,10 +18,13 @@ function handleKeyPress(event) {
         SELECTEDTILE = 3;
         break;
       case '4':
-        SELECTEDTILE = 29;
+        SELECTEDTILE = 29; //BALL
         break;
       case '5':
-        SELECTEDTILE = 7;
+        SELECTEDTILE = 7; //CENTIHEAD_E
+        break;
+      case '6':
+        SELECTEDTILE = 23; //CENTITAIL_E
         break;
       default:
         //nada
