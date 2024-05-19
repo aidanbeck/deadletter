@@ -1,15 +1,40 @@
 
 //JS functions Entropy can call
 
+function handleKeyPress(event) {
+    const key = event.key;
+  
+    switch (key) {
+      case '0':
+        SELECTEDTILE = 0;
+        break;
+      case '1':
+        SELECTEDTILE = 1;
+        break;
+      case '2':
+        SELECTEDTILE = 2;
+        break;
+      case '3':
+        SELECTEDTILE = 3;
+        break;
+      case '4':
+        SELECTEDTILE = 29;
+        break;
+      case '5':
+        SELECTEDTILE = 7;
+        break;
+      default:
+        //nada
+        break;
+    }
+}
+document.addEventListener('keydown', handleKeyPress);
+
 const tileElements = document.getElementsByClassName("tile");
 
 function writeIcon(index, tile) {
     //get tile
     let icon = tileElements[index].firstChild;
-
-    if (icon.data == tile) {
-        return;
-    }
 
     //remove contents/images if there are any
     while(icon.firstChild){
@@ -70,8 +95,8 @@ const TILES = [
     {class: "AIR", src:"NULL"},
     {class: "STONE", src:"other/rock.png"},
     {class: "WOOD", src:"other/sapling.png"},
-    {class: "FIRE", src:""},
-    {class: "FIRE2", src:""},
+    {class: "FIRE", src:"other/fire.gif"},
+    {class: "FIRE2", src:"other/fire.gif"},
 
     {class: "CENTIHEAD_N", src:"enemies/centiEndN.png"},
     {class: "CENTIHEAD_S", src:"enemies/centiEndS.png"},

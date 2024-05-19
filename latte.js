@@ -920,7 +920,7 @@ function dbg(...args) {
 // === Body ===
 
 var ASM_CONSTS = {
-  66236: ($0, $1) => { Module.writeIcon($0, $1); }
+  66316: ($0, $1) => { Module.writeIcon($0, $1); }
 };
 
 // end include: preamble.js

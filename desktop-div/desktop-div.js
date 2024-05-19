@@ -1,3 +1,5 @@
+var SELECTEDTILE = 2;
+
 function createTile(index) {
     const tile = document.createElement("div");
     tile.classList.add("tile");
@@ -12,21 +14,26 @@ function createTile(index) {
     icon.addEventListener("dragover", hoverTileWhileDragging);
     icon.addEventListener("dragleave", exitTileWhileDragging);
 
-    // icon.onclick = function() {
+    icon.onclick = function() {
 
-    //     icon.style.backgroundColor = "";
+        const nodes = Array.prototype.slice.call( document.getElementsByClassName("tile") );
+        const i = nodes.indexOf( icon.parentNode );
 
-    //     if (icon.innerHTML == "") {
-    //         icon.draggable = true;
-    //         icon.innerHTML = "<img class='icon-image examplefile' src='desktop-div/icon.png'>";
-    //         icon.firstChild.style.zIndex = getZIndex(icon) * 2; //why *2?
-    //         icon.firstChild.src = icon.firstChild.src + '?id=' + Math.floor(Math.random() * 100); //animation offset. Could be better way?
+        _writeFromJS(i, SELECTEDTILE);
 
-    //     } else {
-    //         icon.innerHTML = "";
-    //         icon.draggable = false;
-    //     }
-    // }
+        // icon.style.backgroundColor = "";
+
+        // if (icon.innerHTML == "") {
+        //     icon.draggable = true;
+        //     icon.innerHTML = "<img class='icon-image examplefile' src='desktop-div/icon.png'>";
+        //     icon.firstChild.style.zIndex = getZIndex(icon) * 2; //why *2?
+        //     icon.firstChild.src = icon.firstChild.src + '?id=' + Math.floor(Math.random() * 100); //animation offset. Could be better way?
+
+        // } else {
+        //     icon.innerHTML = "";
+        //     icon.draggable = false;
+        // }
+    }
 
     tile.appendChild(icon);
     
