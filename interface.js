@@ -56,7 +56,7 @@ function writeIcon(index, tile) {
         image.classList.add("icon-image");
         image.classList.add(data.class);
         if (data.src == "") { data.src = "other/icon.png" };
-        image.src = "images/" + data.src;
+        image.src = "Images/" + data.src;
 
         if (tile > 4 && tile < 29) {
             image.classList.add("CENTI"); //temp
