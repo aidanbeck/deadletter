@@ -36,6 +36,9 @@
     height: 200%;
     top: -120%;
     left: -100%;
+
+    animation: appear 0.1s;
+    transform-origin: 50% 80% 0;
 }
 
 .FIRE2 {
@@ -43,4 +46,17 @@
     height: 200%;
     top: -120%;
     left: -100%;
+
+    animation: disappear 1s;
+    transform-origin: 50% 80% 0;
+}
+
+@keyframes appear {
+    0% { transform: scale(0%) }
+    100% { transform: scale(100%) }
+}
+
+@keyframes disappear {
+    0% { transform: scale(100%) }
+    100% { transform: scale(20%) }
 }

@@ -1,0 +1,10 @@
+#TRUCK {
+    image-rendering: pixelated;
+    background-image: url('images/ui/uiInventory.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    position: fixed;
+    top:0;
+    right:0;
+}

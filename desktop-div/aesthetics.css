@@ -2,9 +2,9 @@
 
 body {
     height: 100vh;
-    /* overflow: hidden; */
+    overflow: hidden;
     margin: 0px;
-    /* scrollbar-width: none; */
+    scrollbar-width: none;
     background-color: rgb(60, 60, 60);
 }
 
@@ -12,9 +12,9 @@ body {
     background-color: rgb(100, 100, 100);
 }
 
-.tile {
+/* .tile {
     background-color: rgb(40, 40, 40);
-}
+} */
 
 /*hitbox indicator*/
 .icon:hover {

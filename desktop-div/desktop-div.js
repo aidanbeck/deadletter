@@ -78,14 +78,28 @@ const createGrid = (wrapper,columns,rows,scale) => {
 }
 
 const chunk0 = document.getElementsByClassName("DESKTOP-DIV")[0];
-createGrid(chunk0, 15*5, 15, 90);
+createGrid(chunk0, 15*5, 15, 75);
 
-function scaleChunks(columns,rows,scale) {
-    const elements = document.getElementsByClassName("DESKTOP-DIV");
+const truck = document.getElementsByClassName("DESKTOP-DIV")[1];
+createGrid(truck, 7, 11, 75);
+
+window.addEventListener('resize', rescale);
+
+function rescale() {
+    console.log("WATERPOLO");
+    scaleChunks(chunk0,15*5,15,75);
+    scaleChunks(truck, 7, 11, 75);
+}
+
+
+
+function scaleChunks(chunk,columns,rows,scale) {
+    const elements = chunk;
 
     for (i = 0; i < elements.length; i++) {
         elements[i].style.height = scale*rows + "px";
         elements[i].style.width = scale*columns + "px";
+        elements[i].style.backgroundColor = "blue";
     }
 }
 
