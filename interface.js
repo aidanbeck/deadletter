@@ -1,5 +1,6 @@
 
 //JS functions Entropy can call
+let SELECTEDTILE = 2;
 
 function handleKeyPress(event) {
     const key = event.key;
@@ -33,11 +34,11 @@ function handleKeyPress(event) {
 }
 document.addEventListener('keydown', handleKeyPress);
 
-const tileElements = document.getElementsByClassName("tile");
+const slotElements = document.getElementsByClassName("🖥️DIV-slot");
 
 function writeIcon(index, tile) {
     //get tile
-    let icon = tileElements[index].firstChild;
+    let icon = slotElements[index].firstChild;
 
     //remove contents/images if there are any
     while(icon.firstChild){
@@ -56,7 +57,7 @@ function writeIcon(index, tile) {
 
         //create image
         let image = document.createElement("img");
-        image.classList.add("icon-image");
+        image.classList.add("🖥️DIV-iconImage");
         image.classList.add(data.class);
         if (data.src == "") { data.src = "other/icon.png" };
         image.src = "Images/" + data.src;
@@ -132,3 +133,11 @@ const TILES = [
 ]
 
 setInterval(function () { _gameLoop(); }, 500);
+
+
+// DEADLETTER DROP
+// const nodes = Array.prototype.slice.call( document.getElementsByClassName("🖥️DIV-slot") );
+// const oldIndex = nodes.indexOf( draggedIcon.parentNode );
+// const newIndex = nodes.indexOf( ev.target.parentNode );
+// _writeFromJS(oldIndex, 0);
+// _writeFromJS(newIndex, draggedIcon.tile); // I believe .tile refers to the tile data, not the slot.

@@ -3,15 +3,15 @@
     <head>
 
         <link rel="stylesheet" type="text/css" href="desktop-div/structure.css">
-        <link rel="stylesheet" type="text/css" href="desktop-div/aesthetics.css">
+        <link rel="stylesheet" type="text/css" href="aesthetics.css">
         <link rel="stylesheet" type="text/css" href="anchored.css">
         <link rel="stylesheet" type="text/css" href="ui.css">
 
     </head>
     <body>
 
-        <div class = "DESKTOP-DIV" id="WORLD"></div>
-        <div class = "DESKTOP-DIV" id="TRUCK"></div>
+        <div id="WORLD"></div>
+        <div id="TRUCK"></div>
 
         <script src="desktop-div/desktop-div.js"></script>
         <script src="interface.js"></script>
@@ -23,16 +23,44 @@
                 const response = await fetch('latte.wasm');
                 const buffer = await response.arrayBuffer();
                 const module = await WebAssembly.instantiate(buffer);
-                
-                // Access the exported C function
-                const { _multiplier } = module.instance.exports;
-      
-                // Call the C function from JavaScript
-                const result = _multiplier(2, 3);
-                console.log(result); // Output: 5
             }
-      
             init();
+
+            desktopDiv.createDesktop (
+
+                document.getElementById("WORLD"), // Element
+                15*5,  //  Columns
+                15,   //  Rows
+                10,  //  Scale
+                "vh" //  Measurement
+            );
+
+            desktopDiv.createDesktop (
+
+                document.getElementById("TRUCK"), // Element
+                7,  //  Columns
+                11,   //  Rows
+                100/11,  //  Scale
+                "vh" //  Measurement
+            );
+
+            desktopDiv.onClickFunction = function(icon) {
+
+                const index = desktopDiv.getSlotIndex(icon.parentNode);
+
+                _writeFromJS(index, SELECTEDTILE);
+
+            };
+
+            desktopDiv.onDropFunction = function(icon, draggedIcon) {
+
+                const oldIndex = desktopDiv.getSlotIndex(draggedIcon.parentNode);
+                const newIndex = desktopDiv.getSlotIndex(icon.parentNode);
+                const tile = draggedIcon.tile;
+
+                _writeFromJS(oldIndex, 0);
+                _writeFromJS(newIndex, tile);
+            }
           </script>
           <script async type="text/javascript" src="latte.js"></script>
     </body>

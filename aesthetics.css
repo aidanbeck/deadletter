@@ -1,0 +1,42 @@
+/* optional aesthetics, feel free to change or remove*/
+body {
+    height: 100vh;
+    overflow: hidden;
+    margin: 0px;
+    scrollbar-width: none;
+    background-color: rgb(60, 60, 60);
+}
+
+.🖥️DIV-desktop {
+    background-color: rgb(100, 100, 100);
+}
+
+/* .🖥️DIV-slot {
+    background-color: rgb(40, 40, 40);
+} */
+
+/*indicates what tile the mouse is over*/
+.🖥️DIV-icon:hover {
+    background-color: rgba(256,256,256,.125);
+}
+
+/*
+    Duplicate of icon:hover.
+
+    Hovering cannot be detected with ":hover" while dragging something.
+    Because the user will commonly drag icons, the "dragging-over"
+    class exists so that "hovering" can still be detected while dragging.
+*/
+.🖥️DIV-draggingOver {
+    background-color:rgba(256,256,256,.125);
+}
+
+.🖥️DIV-iconImage {
+    filter: drop-shadow(-2px 6px 5px rgba(0,0,0,0.8));
+    image-rendering: pixelated;
+}
+
+/* targets the icon-image when the icon is being hovered over. */
+.🖥️DIV-icon:hover .🖥️DIV-iconImage {
+    filter: drop-shadow(0px 0px 5px cyan); /*selection glow*/
+}
