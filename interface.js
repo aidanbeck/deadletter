@@ -1,7 +1,18 @@
 
-//JS functions Entropy can call
-let SELECTEDTILE = 2;
+/*
+  Debug tool. It detects a key press and changes the value of SELECTEDTILE.
+  SELECTEDTILE is then used as the tile # to create a new icon whenever a slot is clicked.
 
+  0 - AIR
+  1 - STONE
+  2 - WOOD
+  3 - FIRE
+  4 - COYOTE
+  5 - CENTIHEAD
+  5 - CENTITAIL
+
+*/
+let SELECTEDTILE = 2;
 function handleKeyPress(event) {
     const key = event.key;
   
@@ -34,8 +45,28 @@ function handleKeyPress(event) {
 }
 document.addEventListener('keydown', handleKeyPress);
 
-const slotElements = document.getElementsByClassName("🖥️DIV-slot");
+/*
+    Debug function. This will render all textures to the screen, so you can see what is missing.
+*/
+function writeAllTiles() {
+  for (i = 0; i < TILES.length; i++) {
+      writeIcon(i,i);
+  }
+}
 
+/*
+  Helps set the dimensions of UI elements to match the pixel scaling of the desktopDiv world.
+*/
+function scaleElement(element, columns, rows, scale, measurement) {
+  element.style.height = scale*rows + measurement;
+  element.style.width = scale*columns + measurement;
+}
+
+/*
+  writeIcon is a function that can be called by "Entropy".
+  It appends an icon to a specific index of the desktop.
+*/
+const slotElements = document.getElementsByClassName("🖥️DIV-slot");
 function writeIcon(index, tile) {
     //get tile
     let icon = slotElements[index].firstChild;
@@ -71,8 +102,7 @@ function writeIcon(index, tile) {
         icon.draggable = false;
     }
 }
-
-//For C to read
+//Module allows C to read "writeIcon"
 Module = {
     onRuntimeInitialized: function() {
       Module.writeIcon = writeIcon;
@@ -80,14 +110,12 @@ Module = {
 };
 
 /*
-    Debug function. This will render all textures to the screen, so you can see what is missing.
+  Runs the gameLoop C function over and over.
 */
-function writeAllTiles() {
-    for (i = 0; i < TILES.length; i++) {
-        writeIcon(i,i);
-    }
+function cycle() {
+  setInterval(function () { _gameLoop(); }, 500);
 }
-
+window.onload = cycle;
 
 /*
     This array matches with the TILES enum in main.h.
@@ -96,47 +124,38 @@ function writeAllTiles() {
 
 */
 const TILES = [
-    {class: "AIR", src:"NULL"},
-    {class: "STONE", src:"other/rock.png"},
-    {class: "WOOD", src:"other/sapling.png"},
-    {class: "FIRE", src:"other/fire.gif"},
-    {class: "FIRE2", src:"other/fire.gif"},
+  {class: "AIR", src:"NULL"},
+  {class: "STONE", src:"other/rock.png"},
+  {class: "WOOD", src:"other/sapling.png"},
+  {class: "FIRE", src:"other/fire.gif"},
+  {class: "FIRE2", src:"other/fire.gif"},
 
-    {class: "CENTIHEAD_N", src:"enemies/centiEndN.png"},
-    {class: "CENTIHEAD_S", src:"enemies/centiEndS.png"},
-    {class: "CENTIHEAD_E", src:"enemies/centiEndE.png"},
-    {class: "CENTIHEAD_W", src:"enemies/centiEndW.png"},
-    {class: "CENTIHEAD_NE", src:"enemies/centiEndNE.png"},
-    {class: "CENTIHEAD_NW", src:"enemies/centiEndNW.png"}, //!!! missing file
-    {class: "CENTIHEAD_SE", src:"enemies/centiEndSE.png"},
-    {class: "CENTIHEAD_SW", src:"enemies/centiEndSW.png"},
+  {class: "CENTIHEAD_N", src:"enemies/centiEndN.png"},
+  {class: "CENTIHEAD_S", src:"enemies/centiEndS.png"},
+  {class: "CENTIHEAD_E", src:"enemies/centiEndE.png"},
+  {class: "CENTIHEAD_W", src:"enemies/centiEndW.png"},
+  {class: "CENTIHEAD_NE", src:"enemies/centiEndNE.png"},
+  {class: "CENTIHEAD_NW", src:"enemies/centiEndNW.png"}, //!!! missing file
+  {class: "CENTIHEAD_SE", src:"enemies/centiEndSE.png"},
+  {class: "CENTIHEAD_SW", src:"enemies/centiEndSW.png"},
 
-    {class: "CENTIBODY_N", src:"enemies/centiBodyN.png"},
-    {class: "CENTIBODY_S", src:"enemies/centiBodyS.png"},
-    {class: "CENTIBODY_E", src:"enemies/centiBodyE.png"},
-    {class: "CENTIBODY_W", src:"enemies/centiBodyW.png"},
-    {class: "CENTIBODY_NE", src:"enemies/centiBodyNE.png"},
-    {class: "CENTIBODY_NW", src:"enemies/centiBodyNW.png"},
-    {class: "CENTIBODY_SE", src:"enemies/centiBodySE.png"},
-    {class: "CENTIBODY_SW", src:"enemies/centiBodySW.png"},
+  {class: "CENTIBODY_N", src:"enemies/centiBodyN.png"},
+  {class: "CENTIBODY_S", src:"enemies/centiBodyS.png"},
+  {class: "CENTIBODY_E", src:"enemies/centiBodyE.png"},
+  {class: "CENTIBODY_W", src:"enemies/centiBodyW.png"},
+  {class: "CENTIBODY_NE", src:"enemies/centiBodyNE.png"},
+  {class: "CENTIBODY_NW", src:"enemies/centiBodyNW.png"},
+  {class: "CENTIBODY_SE", src:"enemies/centiBodySE.png"},
+  {class: "CENTIBODY_SW", src:"enemies/centiBodySW.png"},
 
-    {class: "CENTITAIL_N", src:"enemies/centiEndS.png"},
-    {class: "CENTITAIL_S", src:"enemies/centiEndN.png"},
-    {class: "CENTITAIL_E", src:"enemies/centiEndW.png"},
-    {class: "CENTITAIL_W", src:"enemies/centiEndE.png"},
-    {class: "CENTITAIL_NE", src:"enemies/centiEndSW.png"},
-    {class: "CENTITAIL_NW", src:"enemies/centiEndSE.png"},
-    {class: "CENTITAIL_SE", src:"enemies/centiEndNW.png"}, //!!! missing file
-    {class: "CENTITAIL_SW", src:"enemies/centiEndNE.png"},
+  {class: "CENTITAIL_N", src:"enemies/centiEndS.png"},
+  {class: "CENTITAIL_S", src:"enemies/centiEndN.png"},
+  {class: "CENTITAIL_E", src:"enemies/centiEndW.png"},
+  {class: "CENTITAIL_W", src:"enemies/centiEndE.png"},
+  {class: "CENTITAIL_NE", src:"enemies/centiEndSW.png"},
+  {class: "CENTITAIL_NW", src:"enemies/centiEndSE.png"},
+  {class: "CENTITAIL_SE", src:"enemies/centiEndNW.png"}, //!!! missing file
+  {class: "CENTITAIL_SW", src:"enemies/centiEndNE.png"},
 
-    {class: "BALL", src:"enemies/coyoteWalk.gif"}
+  {class: "BALL", src:"enemies/coyoteWalk.gif"}
 ]
-
-
-
-function scaleElement(element, columns, rows, scale, measurement) {
-  element.style.height = scale*rows + measurement;
-  element.style.width = scale*columns + measurement;
-}
-
-setInterval(function () { _gameLoop(); }, 500);

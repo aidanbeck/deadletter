@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="desktop-div/structure.css">
         <link rel="stylesheet" type="text/css" href="aesthetics.css">
-        <link rel="stylesheet" type="text/css" href="anchored.css">
+        <link rel="stylesheet" type="text/css" href="tiles.css">
         <link rel="stylesheet" type="text/css" href="ui.css">
 
     </head>
@@ -21,82 +21,49 @@
 
         <script src="desktop-div/desktop-div.js"></script>
         <script src="interface.js"></script>
+        <script async type="text/javascript" src="barista/latte.js"></script>
         
         
         <script>
+
+            // WEB ASSEMBLY
+            let wasm;
             async function init() {
-                // Load and instantiate the WebAssembly module
-                const response = await fetch('latte.wasm');
+                const response = await fetch('barista/latte.wasm');
                 const buffer = await response.arrayBuffer();
                 const module = await WebAssembly.instantiate(buffer);
             }
             init();
 
-            desktopDiv.createDesktop (
+            /*
+                Initialize Desktops & HUD elements.
+                Scale is set to 100/11, because I want the 
+            */
+            desktopDiv.createDesktop(document.getElementById("WORLD"), 15*5, 15, 100/11, "vh");
+            desktopDiv.createDesktop(document.getElementById("INVENTORY"), 5, 5, 100/11, "vh");
+            scaleElement(document.getElementById("TRUCK"), 7, 11, 100/11, "vh");
+            scaleElement(document.getElementById("HUD"), 4, 3, 100/11, "vh");
+            scaleElement(document.getElementById("GAUGE"), 4, 3, 100/11, "vh");
+            scaleElement(document.getElementById("TIRE0"), 12/16, 12/16, 100/11, "vh"); // 12/16 is probably messing things up! Should resize image.
 
-                document.getElementById("WORLD"), // Element
-                15*5,  //  Columns
-                15,   //  Rows
-                100/11,  //  Scale
-                "vh" //  Measurement
-            );
-
-            scaleElement (
-
-                document.getElementById("TRUCK"), // Element
-                7,  //  Columns
-                11,   //  Rows
-                100/11,  //  Scale
-                "vh" //  Measurement
-            );
-
-            desktopDiv.createDesktop (
-
-                document.getElementById("INVENTORY"), // Element
-                5,  //  Columns
-                5,   //  Rows
-                100/11,  //  Scale
-                "vh" //  Measurement
-            );
-
-            scaleElement (
-
-                document.getElementById("HUD"), // Element
-                4,  //  Columns
-                3,   //  Rows
-                100/11,  //  Scale
-                "vh" //  Measurement
-            );
-
-            scaleElement (
-
-                document.getElementById("GAUGE"), // Element
-                4,  //  Columns
-                3,   //  Rows
-                100/11,  //  Scale
-                "vh" //  Measurement
-            );
-
-            scaleElement (
-
-                document.getElementById("TIRE0"), // Element
-                12/16,  //  Columns
-                12/16,   //  Rows
-                100/11,  //  Scale
-                "vh" //  Measurement
-            );
-
-
-
-
+            /*
+                Define slot click behavior.
+                This places down a tile defined by SELECTEDTILE.
+            */
             desktopDiv.onClickFunction = function(icon) {
 
                 const index = desktopDiv.getSlotIndex(icon.parentNode);
 
                 _writeFromJS(index, SELECTEDTILE);
+                console.log(index);
 
             };
 
+            /*
+                Define icon drop behavior.
+                This places AIR at the previous index, and
+                places the dragged tile at the new index.
+            */
             desktopDiv.onDropFunction = function(icon, draggedIcon) {
 
                 const oldIndex = desktopDiv.getSlotIndex(draggedIcon.parentNode);
@@ -106,7 +73,7 @@
                 _writeFromJS(oldIndex, 0);
                 _writeFromJS(newIndex, tile);
             }
+
           </script>
-          <script async type="text/javascript" src="latte.js"></script>
     </body>
 </html>
