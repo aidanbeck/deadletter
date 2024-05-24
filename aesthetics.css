@@ -7,9 +7,87 @@ body {
     background-color: rgb(60, 60, 60);
 }
 
-.🖥️DIV-desktop {
-    background-color: rgb(100, 100, 100);
+#TRUCK {
+    image-rendering: pixelated;
+    background-image: url('images/ui/uiInventory.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    position: fixed;
+    z-index: 20;
+
+    top:0;
+    right:0;
 }
+
+#INVENTORY {
+    /*
+        The screen height is 11 * 16 pixels.
+        Total height: 176 pixels.
+        I want to move the div 55 pixels down.
+        Or, 55 pixels out of 176 pixels.
+
+        (part/total) / 100 = Percentage
+
+        (55/176) * 100 = 31.25
+
+    */
+    top: 31.25vh;
+
+    /*
+        I want to move it 16 pixels right.
+        Because I'm using vh, should I still use 176?
+
+        (16/176) * 100 = 9.09090909...
+
+    */
+    left: 9.0909vh;
+}
+
+#HUD {
+    image-rendering: pixelated;
+    background-image: url('images/ui/uiHud.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    pointer-events: none; /*lets hovering mouse pass through*/
+    position: fixed;
+    z-index: 20;
+
+    /*
+        I want to move this 3 pixels up, 10 pixels left.
+        This way there are 3 pixels between it and the border.
+
+        (3/176) * 100 = 1.70454545...
+        (10/176) * 100 = 5.68181818...
+
+    */
+
+    bottom: 1.704545vh;
+    left: -5.681818vh;
+}
+
+#GAUGE {
+    /* #F9A31B */
+    filter: drop-shadow(0px 0px 10px #F9A31B);
+}
+
+#TIRE0 {
+    position: absolute;
+    filter: drop-shadow(0px 0px 5px #F9A31B);
+
+    left: calc((24 / 176) * 100vh);
+    bottom: calc((35 / 176) * 100vh);
+
+    /*
+        This isn't the right size. This is probably because I am a fraction off the scale
+        when I do 12/16 with the scaleElement function. I should just make each ui texture increments of 16x16
+    */
+}
+
+/* .🖥️DIV-desktop {
+    background-color: rgb(100, 100, 100);
+} */
 
 /* .🖥️DIV-slot {
     background-color: rgb(40, 40, 40);

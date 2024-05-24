@@ -132,12 +132,11 @@ const TILES = [
     {class: "BALL", src:"enemies/coyoteWalk.gif"}
 ]
 
+
+
+function scaleElement(element, columns, rows, scale, measurement) {
+  element.style.height = scale*rows + measurement;
+  element.style.width = scale*columns + measurement;
+}
+
 setInterval(function () { _gameLoop(); }, 500);
-
-
-// DEADLETTER DROP
-// const nodes = Array.prototype.slice.call( document.getElementsByClassName("🖥️DIV-slot") );
-// const oldIndex = nodes.indexOf( draggedIcon.parentNode );
-// const newIndex = nodes.indexOf( ev.target.parentNode );
-// _writeFromJS(oldIndex, 0);
-// _writeFromJS(newIndex, draggedIcon.tile); // I believe .tile refers to the tile data, not the slot.

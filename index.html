@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="desktop-div/structure.css">
         <link rel="stylesheet" type="text/css" href="aesthetics.css">
         <link rel="stylesheet" type="text/css" href="anchored.css">
@@ -11,7 +11,13 @@
     <body>
 
         <div id="WORLD"></div>
-        <div id="TRUCK"></div>
+        <div id="TRUCK">
+            <div id="INVENTORY"></div>
+        </div>
+        <div id="HUD">
+            <img id="GAUGE" src="images/ui/uiHud_fuelGauge.png">
+            <img id="TIRE0" src="images/ui/uiHud_fullTire.png">
+        </div>
 
         <script src="desktop-div/desktop-div.js"></script>
         <script src="interface.js"></script>
@@ -31,11 +37,11 @@
                 document.getElementById("WORLD"), // Element
                 15*5,  //  Columns
                 15,   //  Rows
-                10,  //  Scale
+                100/11,  //  Scale
                 "vh" //  Measurement
             );
 
-            desktopDiv.createDesktop (
+            scaleElement (
 
                 document.getElementById("TRUCK"), // Element
                 7,  //  Columns
@@ -43,6 +49,45 @@
                 100/11,  //  Scale
                 "vh" //  Measurement
             );
+
+            desktopDiv.createDesktop (
+
+                document.getElementById("INVENTORY"), // Element
+                5,  //  Columns
+                5,   //  Rows
+                100/11,  //  Scale
+                "vh" //  Measurement
+            );
+
+            scaleElement (
+
+                document.getElementById("HUD"), // Element
+                4,  //  Columns
+                3,   //  Rows
+                100/11,  //  Scale
+                "vh" //  Measurement
+            );
+
+            scaleElement (
+
+                document.getElementById("GAUGE"), // Element
+                4,  //  Columns
+                3,   //  Rows
+                100/11,  //  Scale
+                "vh" //  Measurement
+            );
+
+            scaleElement (
+
+                document.getElementById("TIRE0"), // Element
+                12/16,  //  Columns
+                12/16,   //  Rows
+                100/11,  //  Scale
+                "vh" //  Measurement
+            );
+
+
+
 
             desktopDiv.onClickFunction = function(icon) {
 
