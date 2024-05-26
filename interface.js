@@ -9,7 +9,7 @@
   3 - FIRE
   4 - COYOTE
   5 - CENTIHEAD
-  5 - CENTITAIL
+  6 - CENTITAIL
 
 */
 let SELECTEDTILE = 2;

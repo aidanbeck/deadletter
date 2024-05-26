@@ -16,7 +16,12 @@
         </div>
         <div id="HUD">
             <img id="GAUGE" src="images/ui/uiHud_fuelGauge.png">
-            <img id="TIRE0" src="images/ui/uiHud_fullTire.png">
+            <img id="TICKER_LEFT" src="images/ui/uiTicker0.png">
+            <img id="TICKER_RIGHT" src="images/ui/uiTicker0.png">
+            <img id="TIRE0" class="TIRE" src="images/ui/uiHud_fullTire.png">
+            <img id="TIRE1" class="TIRE" src="images/ui/uiHud_fullTire.png">
+            <img id="TIRE2" class="TIRE" src="images/ui/uiHud_fullTire.png">
+            <img id="TIRE3" class="TIRE" src="images/ui/uiHud_fullTire.png">
         </div>
 
         <script src="desktop-div/desktop-div.js"></script>
@@ -44,7 +49,12 @@
             scaleElement(document.getElementById("TRUCK"), 7, 11, 100/11, "vh");
             scaleElement(document.getElementById("HUD"), 4, 3, 100/11, "vh");
             scaleElement(document.getElementById("GAUGE"), 4, 3, 100/11, "vh");
-            scaleElement(document.getElementById("TIRE0"), 12/16, 12/16, 100/11, "vh"); // 12/16 is probably messing things up! Should resize image.
+            scaleElement(document.getElementById("TICKER_LEFT"), 1, 1, 100/11, "vh");
+            scaleElement(document.getElementById("TICKER_RIGHT"), 1, 1, 100/11, "vh");
+            scaleElement(document.getElementById("TIRE0"), 1, 1, 100/11, "vh");
+            scaleElement(document.getElementById("TIRE1"), 1, 1, 100/11, "vh");
+            scaleElement(document.getElementById("TIRE2"), 1, 1, 100/11, "vh");
+            scaleElement(document.getElementById("TIRE3"), 1, 1, 100/11, "vh");
 
             /*
                 Define slot click behavior.
