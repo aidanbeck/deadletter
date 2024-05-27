@@ -1,3 +1,17 @@
+#WORLD {
+    transition: linear 0.3s;
+}
+
+.WORLD-stationary {
+    left: var(--stationaryX, 0vh);
+    top: var(--stationaryY, 0vh);
+}
+
+.WORLD-moving {
+    left: var(--movingX, 0vh);
+    top: var(--movingY, 0vh);
+}
+
 #TRUCK {
     background-image: url('images/ui/uiInventory.png');
     background-repeat: no-repeat;

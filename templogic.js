@@ -38,7 +38,7 @@ const UI = {
         const digit_R = gas % 10;
         const digit_L = (gas - digit_R) / 10;
 
-        const element_R = document.getElementById("TICKER_RIGHT");
+        const element_R = document.getElementById("TICKER_RIGHT"); //Should have these be static variables
         const element_L = document.getElementById("TICKER_LEFT");
 
         element_R.src = this.tickerSrcs[ digit_R ];
@@ -49,7 +49,7 @@ const UI = {
         
         for ( let i = 0; i < 4; i++ ) {
 
-            let element = document.getElementById(this.tireIds[i]);
+            let element = document.getElementById(this.tireIds[i]); //Should optimize by saving element references in arry
             let tireStatus = tires[i];
 
             let src = "";
@@ -62,7 +62,31 @@ const UI = {
         }
     },
 
-    updateLocation() {
+    updateLocation(element, position) {
+
+        //Get new coordinates
+        const newX = position.x * ( -100 / 11 ); //11 is a magic number. It is the vertical height of the screen in tiles.
+        const newY = position.y * ( -100 / 11 );
+
+        //Get previous coordinates.
+        const oldX = element.style.getPropertyValue('--movingX');
+        const oldY = element.style.getPropertyValue('--movingY');
+
+        //Prep animation to start at old coordinates.
+        element.style.setProperty('--stationaryX', oldX);
+        element.style.setProperty('--stationaryY', oldY);
+
+        //Set element to stationary.
+        element.classList.add("WORLD-stationary");
+        element.classList.remove("WORLD-moving");
+
+        //Set animation to move to new coordinates.
+        element.style.setProperty('--movingX', newX + "vh");
+        element.style.setProperty('--movingY', newY + "vh");
+
+        //Start animation.
+        element.classList.remove("WORLD-stationary");
+        element.classList.add("WORLD-moving");
 
     }
 }
