@@ -17,6 +17,39 @@ function handleKeyPress(event) {
     const key = event.key;
   
     switch (key) {
+
+      case 'ArrowRight':
+        UI.playerPosition.x += 5;
+        UI.updateLocation(
+          document.getElementById("WORLD"),
+          UI.playerPosition
+        );
+        break;
+
+      case 'ArrowLeft':
+        UI.playerPosition.x -= 5;
+        UI.updateLocation(
+          document.getElementById("WORLD"),
+          UI.playerPosition
+        );  
+        break;
+      
+        case 'ArrowUp':
+          UI.playerPosition.y -= 5;
+          UI.updateLocation(
+            document.getElementById("WORLD"),
+            UI.playerPosition
+          );
+          break;
+  
+        case 'ArrowDown':
+          UI.playerPosition.y += 5;
+          UI.updateLocation(
+            document.getElementById("WORLD"),
+            UI.playerPosition
+          );
+          break;
+
       case '0':
         SELECTEDTILE = 0;
         break;
@@ -40,6 +73,9 @@ function handleKeyPress(event) {
         break;
       case '7':
         SELECTEDTILE = 7; //CENTITAIL_E
+        break;
+      case '8':
+        SELECTEDTILE = 8; //CENTITAIL_E
         break;
       default:
         //nada
@@ -71,6 +107,8 @@ function scaleElement(element, columns, rows, scale, measurement) {
 */
 const slotElements = document.getElementsByClassName("🖥️DIV-slot");
 function writeIcon(index, tile) {
+
+   //index--;
     //get tile
     let icon = slotElements[index].firstChild;
 
@@ -94,7 +132,7 @@ function writeIcon(index, tile) {
         image.classList.add("🖥️DIV-iconImage");
         image.classList.add(data.class);
         if (data.src == "") { data.src = "other/icon.png" };
-        image.src = "Images/" + data.src;
+        image.src = "images/" + data.src;
 
         if (tile > 4 && tile < 29) {
             image.classList.add("CENTI"); //temp
@@ -132,37 +170,41 @@ const TILES = [
   {class: "WOOD", src:"other/sapling.png"},
   {class: "FIRE", src:"other/fire.gif"},
   {class: "FIRE2", src:"other/fire.gif"},
-  {class: "PACKAGE", src:"other/icon.png"},
-  {class: "GAS", src:"enemies/spawnSac.gif"},
-  {class: "SPAWNER", src:"enemies/centiEndN.png"},
-  {class: "SPAWN_RANDOM", src:"enemies/centiEndW.png"},
 
-  {class: "CENTIHEAD_N", src:"enemies/centiEndN.png"},
-  {class: "CENTIHEAD_S", src:"enemies/centiEndS.png"},
-  {class: "CENTIHEAD_E", src:"enemies/centiEndE.png"},
-  {class: "CENTIHEAD_W", src:"enemies/centiEndW.png"},
-  {class: "CENTIHEAD_NE", src:"enemies/centiEndNE.png"},
-  {class: "CENTIHEAD_NW", src:"enemies/centiEndNW.png"}, //!!! missing file
-  {class: "CENTIHEAD_SE", src:"enemies/centiEndSE.png"},
-  {class: "CENTIHEAD_SW", src:"enemies/centiEndSW.png"},
+  //NOT IMPLEMENTED
+  // {class: "CENTIHEAD_N", src:"enemies/centiEndN.png"},
+  // {class: "CENTIHEAD_S", src:"enemies/centiEndS.png"},
+  // {class: "CENTIHEAD_E", src:"enemies/centiEndE.png"},
+  // {class: "CENTIHEAD_W", src:"enemies/centiEndW.png"},
+  // {class: "CENTIHEAD_NE", src:"enemies/centiEndNE.png"},
+  // {class: "CENTIHEAD_NW", src:"enemies/centiEndNW.png"}, //!!! missing file
+  // {class: "CENTIHEAD_SE", src:"enemies/centiEndSE.png"},
+  // {class: "CENTIHEAD_SW", src:"enemies/centiEndSW.png"},
 
-  {class: "CENTIBODY_N", src:"enemies/centiBodyN.png"},
-  {class: "CENTIBODY_S", src:"enemies/centiBodyS.png"},
-  {class: "CENTIBODY_E", src:"enemies/centiBodyE.png"},
-  {class: "CENTIBODY_W", src:"enemies/centiBodyW.png"},
-  {class: "CENTIBODY_NE", src:"enemies/centiBodyNE.png"},
-  {class: "CENTIBODY_NW", src:"enemies/centiBodyNW.png"},
-  {class: "CENTIBODY_SE", src:"enemies/centiBodySE.png"},
-  {class: "CENTIBODY_SW", src:"enemies/centiBodySW.png"},
+  // {class: "CENTIBODY_N", src:"enemies/centiBodyN.png"},
+  // {class: "CENTIBODY_S", src:"enemies/centiBodyS.png"},
+  // {class: "CENTIBODY_E", src:"enemies/centiBodyE.png"},
+  // {class: "CENTIBODY_W", src:"enemies/centiBodyW.png"},
+  // {class: "CENTIBODY_NE", src:"enemies/centiBodyNE.png"},
+  // {class: "CENTIBODY_NW", src:"enemies/centiBodyNW.png"},
+  // {class: "CENTIBODY_SE", src:"enemies/centiBodySE.png"},
+  // {class: "CENTIBODY_SW", src:"enemies/centiBodySW.png"},
 
-  {class: "CENTITAIL_N", src:"enemies/centiEndS.png"},
-  {class: "CENTITAIL_S", src:"enemies/centiEndN.png"},
-  {class: "CENTITAIL_E", src:"enemies/centiEndW.png"},
-  {class: "CENTITAIL_W", src:"enemies/centiEndE.png"},
-  {class: "CENTITAIL_NE", src:"enemies/centiEndSW.png"},
-  {class: "CENTITAIL_NW", src:"enemies/centiEndSE.png"},
-  {class: "CENTITAIL_SE", src:"enemies/centiEndNW.png"}, //!!! missing file
-  {class: "CENTITAIL_SW", src:"enemies/centiEndNE.png"},
+  // {class: "CENTITAIL_N", src:"enemies/centiEndS.png"},
+  // {class: "CENTITAIL_S", src:"enemies/centiEndN.png"},
+  // {class: "CENTITAIL_E", src:"enemies/centiEndW.png"},
+  // {class: "CENTITAIL_W", src:"enemies/centiEndE.png"},
+  // {class: "CENTITAIL_NE", src:"enemies/centiEndSW.png"},
+  // {class: "CENTITAIL_NW", src:"enemies/centiEndSE.png"},
+  // {class: "CENTITAIL_SE", src:"enemies/centiEndNW.png"}, //!!! missing file
+  // {class: "CENTITAIL_SW", src:"enemies/centiEndNE.png"},
 
-  {class: "BALL", src:"enemies/coyoteWalk.gif"}
+  // {class: "BALL", src:"enemies/coyoteWalk.gif"},
+  // {class: "RAT", src:"enemies/coyoteWalk.gif"},
+
+  //IMPLEMENTED AGAIN
+  {class: "PACKAGE", src:"other/box1.png"},
+  {class: "GAS", src:"other/gas.png"},
+  {class: "SPAWNER", src:"other/icon.png"},
+  {class: "SPAWN_RANDOM", src:"enemies/spawnSac.gif"},
 ]

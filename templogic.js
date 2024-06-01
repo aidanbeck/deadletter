@@ -1,6 +1,6 @@
 const UI = {
 
-    playerPosition: { x: 2, y: 2 },
+    playerPosition: { x: 0, y: 0 },
 
     gasRemaining: 0,
     
