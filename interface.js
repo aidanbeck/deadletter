@@ -30,13 +30,16 @@ function handleKeyPress(event) {
         SELECTEDTILE = 3;
         break;
       case '4':
-        SELECTEDTILE = 29; //BALL
+        SELECTEDTILE = 4; //BALL
         break;
       case '5':
-        SELECTEDTILE = 7; //CENTIHEAD_E
+        SELECTEDTILE = 5; //CENTIHEAD_E
         break;
       case '6':
-        SELECTEDTILE = 23; //CENTITAIL_E
+        SELECTEDTILE = 6; //CENTITAIL_E
+        break;
+      case '7':
+        SELECTEDTILE = 7; //CENTITAIL_E
         break;
       default:
         //nada
@@ -129,6 +132,10 @@ const TILES = [
   {class: "WOOD", src:"other/sapling.png"},
   {class: "FIRE", src:"other/fire.gif"},
   {class: "FIRE2", src:"other/fire.gif"},
+  {class: "PACKAGE", src:"other/icon.png"},
+  {class: "GAS", src:"enemies/spawnSac.gif"},
+  {class: "SPAWNER", src:"enemies/centiEndN.png"},
+  {class: "SPAWN_RANDOM", src:"enemies/centiEndW.png"},
 
   {class: "CENTIHEAD_N", src:"enemies/centiEndN.png"},
   {class: "CENTIHEAD_S", src:"enemies/centiEndS.png"},

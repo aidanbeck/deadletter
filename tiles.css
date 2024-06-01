@@ -22,6 +22,38 @@
     left: 0%;
 }
 
+.GAS {
+    width: 80%;
+    height: 80%;
+
+    top: 10%;
+    left:10%;
+}
+
+.PACKAGE {
+    width: 300%;
+    height: 300%;
+
+    top: -100%;
+    left: -100%;
+}
+
+.SPAWNER {
+    width: 300%;
+    height: 300%;
+
+    top: -100%;
+    left: -100%;
+}
+
+.SPAWNER_RANDOM {
+    width: 300%;
+    height: 300%;
+
+    top: -100%;
+    left: -100%;
+}
+
 .CENTI {
     width: 300%;
     height: 300%;

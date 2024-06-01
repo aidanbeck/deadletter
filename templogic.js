@@ -90,3 +90,7 @@ const UI = {
 
     }
 }
+
+function moveHandler(tile, desktop, oldIndex, newIndex) {
+
+}
